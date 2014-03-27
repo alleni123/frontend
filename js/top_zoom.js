@@ -1,7 +1,7 @@
 (function($) {
 
 	$.fn.imgzoom = function(opts) {
-
+		
 		var setting = $.extend({
 			imgSelector : ".click_img",
 			imgSrc : "", //显示在前面的图片src
@@ -25,8 +25,7 @@
 		$(document).on("click", setting.img_page, page);
 
 		$(setting.imgSelector).on("click", initZoom);
-		function initZoom(e) {
-
+		function initZoom(e) {	
 			//根据图片宽度和浏览器显示宽度来计算一下图片到左边的距离left.
 			var w_width = $(window).width();
 			//1732

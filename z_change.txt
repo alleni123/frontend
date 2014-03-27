@@ -1,0 +1,7 @@
+3/27
+
+1. 根据新浪的图片列表显示，重写了gallery.html的图片排列。
+http://slide.news.sina.com.cn/c/slide_1_56270_48164.html#p=1
+
+
+2.

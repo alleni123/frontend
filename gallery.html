@@ -8,10 +8,11 @@
       
         <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
         <link rel="shortcut icon" href="/favicon.ico">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
         <link  rel="stylesheet" type="text/css" href="css/main.css"/>
+         <link  rel="stylesheet" type="text/css" href="js/top_zoom.css"/>
           <script type="text/javascript" src="js/jquery-1.9.0.js"></script>
        <script type="text/javascript" src="js/jquery_draggable.js"></script>
+       <script type="text/javascript" src="js/top_zoom.js"></script>
       
         
         <style type="text/css">
@@ -43,6 +44,28 @@
                 width: 160px;
                 margin: 10px 12px;
             }
+            
+            #img_container li{
+                float:left;
+                display:inline;
+                overflow:hidden;
+                width:235px;
+                height:270px;
+                padding:40px 0 0 0;
+                position:relative;
+            }
+            
+            #img_container li img{
+                cursor:pointer;
+            }
+            
+            .clearfix:after{
+                content:".";
+                display:block;
+                height:0;
+                visibility:hidden;
+                clear:both;
+            }
 
         </style>
 
@@ -52,7 +75,7 @@
               //  $(".gallery_img_img").drags();
             //  $("#gallery_img_img img").
                 $("#appendParent").imgzoom({
-                    imgSelector : "click_img"
+                    imgSelector : ".click_img"
                 });
             });
             
@@ -80,61 +103,70 @@
                     </ul>
 
                 </div>
-
-                <div id="img_container">
-                    <div class="gallery_img">
-                        <div class="gallery_img_img">
-                            <a href="*" title="title"> <img alt=""
-                            src="*" width="160" height="160" class="" /> </a>
-                        </div>
-                        <div class="gallery_img_title">
+                
+                
+                <div id="img_container" class="clearfix">
+                    <ul class="clearfix">
+                        <li>
+                            <div class="gallery_img_img">
+                               <img alt=""
+                            src="css/img/roll-01.jpg" width="160" height="160" w="766" h="786" class="click_img" />
+                            </div>
+                             <div class="gallery_img_title">
                             <span><a href="*id" title="title">title</a> </span>
                         </div>
                         <div class="gallery_img_intro">
                             <span> 1977/7/7</span>
                         </div>
-                    </div>
-
-                    <div class="gallery_img">
-                        <div class="gallery_img_img">
-                            <a href="*" title="title"> <img alt=""
-                            src="*" width="160" height="160" /> </a>
-                        </div>
-                        <div class="gallery_img_title">
+                        </li>
+                        
+                        
+                          <li>
+                            <div class="gallery_img_img">
+                               <img alt=""
+                            src="css/img/roll-02.jpg" width="160" height="160"  class="click_img" w="766" h="786" />
+                            </div>
+                             <div class="gallery_img_title">
                             <span><a href="*id" title="title">title</a> </span>
                         </div>
                         <div class="gallery_img_intro">
                             <span> 1977/7/7</span>
                         </div>
-                    </div>
-
-                    <div class="gallery_img">
-                        <div class="gallery_img_img">
-                            <a href="*" title="title"> <img alt=""
-                            src="*" width="160" height="160" /> </a>
-                        </div>
-                        <div class="gallery_img_title">
+                        </li>
+                        
+                        
+                        
+                          <li>
+                            <div class="gallery_img_img">
+                               <img alt=""
+                            src="css/img/roll-03.jpg" width="160" height="160" class="click_img" w="766" h="786" />
+                            </div>
+                             <div class="gallery_img_title">
                             <span><a href="*id" title="title">title</a> </span>
                         </div>
                         <div class="gallery_img_intro">
                             <span> 1977/7/7</span>
                         </div>
-                    </div>
-
-                    <div class="gallery_img">
-                        <div class="gallery_img_img">
-                            <a href="*" title="title"> <img alt=""
-                            src="*" width="160" height="160" /> </a>
-                        </div>
-                        <div class="gallery_img_title">
+                        </li>
+                        
+                          <li>
+                            <div class="gallery_img_img">
+                               <img alt=""
+                            src="css/img/roll-01.jpg" width="160" height="160" class="click_img" w="766" h="786"/>
+                            </div>
+                             <div class="gallery_img_title">
                             <span><a href="*id" title="title">title</a> </span>
                         </div>
                         <div class="gallery_img_intro">
                             <span> 1977/7/7</span>
                         </div>
-                    </div>
-
+                        </li> 
+                        
+                        
+                    </ul>
                 </div>
+                
+
 
             </div>
         </div>
