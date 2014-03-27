@@ -4,4 +4,4 @@
 http://slide.news.sina.com.cn/c/slide_1_56270_48164.html#p=1
 
 
-2.
+2. 根据百度贴吧的发帖功能的代码， 写了blog_content.html的回复内容代码。

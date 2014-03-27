@@ -16,6 +16,13 @@ table, th, td {
     font-size: 12px;
     font-family: "宋体"
 }
+ .clearfix:after{
+                content:".";
+                display:block;
+                height:0;
+                visibility:hidden;
+                clear:both;
+            }
 
 body {
     background: #f6f4ea
