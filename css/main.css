@@ -1,0 +1,140 @@
+<style type="text/css">
+body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, label, dl, dt, dd, fieldset, img {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none
+}
+table, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-family: "宋体"
+}
+
+body {
+    background: #f6f4ea
+}
+a {
+    text-decoration: none
+}
+
+
+
+/*框架开始*/
+#header_con, #nav_con, #content_con, #bottom_con {
+    /*  border: 1px solid blue;*/
+    width: 1100px;
+    position: absolute;
+    left: 50%;
+    margin-left: -550px;
+}
+
+#content_con {
+    background-color: #fff;
+    border-radius: 7px;
+}
+
+#header {
+    height: 96px;
+    background: url(img/bg_hua.jpg) no-repeat 410px 24px;
+}
+#header_con {
+    position: absolute;
+    top: 23px;
+}
+
+#nav {
+    height: 64px
+}
+
+#logo {
+    width: 530px;
+    height: 58px;
+    background: url(img/logo.jpg) 56px no-repeat;
+    float: left
+}
+
+.nav_hover {
+    background-color: #ee8296;
+    color: #000;
+}
+
+
+#nav_con ul li {
+    list-style: none;
+    float: left;
+    width: 270px;
+    height: 58px;
+    text-align: center;
+    background-color: #fff;
+    margin-right: 5px;
+    border-radius: 7px;
+}
+#nav_con ul li .nav_con_mainli {
+
+}
+
+#nav_con ul li span .nav_con_li_eng {
+    font-size: 50px;
+}
+#nav_con ul li span .nav_con_li_chn {
+    font-size: 21px;
+}
+
+#nav_con ul li span {
+    font-family: "方正喵呜体"
+}
+
+#search {
+    position: absolute;
+    left: 885px;
+    top: 13px;
+    width: 218px;
+    height: 38px;
+    background: url(img/search.jpg);
+}
+
+#search input {
+    height: 32px;
+    width: 155px;
+    font-size: 20px;
+    border: none;
+    margin-top: 3px;
+    margin-left: 5px;
+    outline: 0;
+}
+
+/*content*/
+
+/*bottom*/
+#bottom {
+    height: 88px;
+    /*background: url(img/bottom_bg.jpg);*/
+    width: 100%;
+    float: left;
+    border-top: 2px solid green;
+}
+
+#bottom_con div {
+    float: left;
+    position: relative;
+    top: 20px;
+}
+
+#bottom_con #rd_team {
+    left: 220px;
+}
+#bottom_con #copyright {
+    left: 310px;
+}
+#bottom_con #tech_support {
+    left: 400px;
+}
+
+</style>

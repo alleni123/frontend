@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+      
+        <title>story</title>
+      
+        <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <link  rel="stylesheet" type="text/css" href="css/main.css"/>
+          <script type="text/javascript" src="js/jquery-1.9.0.js"></script>
+       <script type="text/javascript" src="js/jquery_draggable.js"></script>
+      
+        
+        <style type="text/css">
+            #content_con {
+                background-color: #fff;
+                border-radius: 7px;
+            }
+
+            #content_con #sort_order {
+                width: 100%;
+                height: 100px;
+                position: relative;
+                top: 80px;
+                left: 150px;
+            }
+
+            #content_con #sort_order ul li {
+                list-style: none;
+                float: left;
+                font-family: "宋体"
+            }
+
+            #img_container {
+                margin-left: 140px;
+            }
+
+            .gallery_img {
+                float: left;
+                width: 160px;
+                margin: 10px 12px;
+            }
+
+        </style>
+
+
+        <script type="text/javascript">
+            $(function(){
+              //  $(".gallery_img_img").drags();
+            //  $("#gallery_img_img img").
+                $("#appendParent").imgzoom({
+                    imgSelector : "click_img"
+                });
+            });
+            
+        </script>
+
+    </head>
+
+    <body>
+        <div id="appendParent"></div>
+        
+        <div id="content">
+            <div id="content_con" style="height:773px">
+
+                <div id="sort_order">
+                    <ul>
+                        <li>
+                            排序|
+                        </li>
+                        <li>
+                            时间<img src="css/img/descending.jpg" alt="descending"/>
+                        </li>
+                        <li>
+                            名称
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div id="img_container">
+                    <div class="gallery_img">
+                        <div class="gallery_img_img">
+                            <a href="*" title="title"> <img alt=""
+                            src="*" width="160" height="160" class="" /> </a>
+                        </div>
+                        <div class="gallery_img_title">
+                            <span><a href="*id" title="title">title</a> </span>
+                        </div>
+                        <div class="gallery_img_intro">
+                            <span> 1977/7/7</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery_img">
+                        <div class="gallery_img_img">
+                            <a href="*" title="title"> <img alt=""
+                            src="*" width="160" height="160" /> </a>
+                        </div>
+                        <div class="gallery_img_title">
+                            <span><a href="*id" title="title">title</a> </span>
+                        </div>
+                        <div class="gallery_img_intro">
+                            <span> 1977/7/7</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery_img">
+                        <div class="gallery_img_img">
+                            <a href="*" title="title"> <img alt=""
+                            src="*" width="160" height="160" /> </a>
+                        </div>
+                        <div class="gallery_img_title">
+                            <span><a href="*id" title="title">title</a> </span>
+                        </div>
+                        <div class="gallery_img_intro">
+                            <span> 1977/7/7</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery_img">
+                        <div class="gallery_img_img">
+                            <a href="*" title="title"> <img alt=""
+                            src="*" width="160" height="160" /> </a>
+                        </div>
+                        <div class="gallery_img_title">
+                            <span><a href="*id" title="title">title</a> </span>
+                        </div>
+                        <div class="gallery_img_intro">
+                            <span> 1977/7/7</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+</html>
