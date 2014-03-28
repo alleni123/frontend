@@ -49,11 +49,19 @@ a {
 
 #header {
     height: 96px;
-    background: url(img/bg_hua.jpg) no-repeat 410px 24px;
+    
 }
 #header_con {
     position: absolute;
-    top: 23px;
+    /*top: 23px;*/
+   top:20px;
+    background: url(img/bg_hua.jpg) no-repeat 8px 8px;
+}
+
+#header_con_wrapper{
+    position:relative;
+    height:95px;
+    
 }
 
 #nav {
