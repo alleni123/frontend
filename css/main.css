@@ -78,6 +78,7 @@ a {
 .nav_hover {
     background-color: #ee8296;
     color: #000;
+	cursor:pointer;
 }
 
 
@@ -91,6 +92,12 @@ a {
     margin-right: 5px;
     border-radius: 7px;
 }
+
+#nav_con ul li.sel_page{
+    background-color: #EE8296;
+    color:#fff;
+}
+
 #nav_con ul li .nav_con_mainli {
 
 }

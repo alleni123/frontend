@@ -25,16 +25,23 @@
 					timeout : 1500
 				});
 
-				$("#nav_con ul li").hover(function() {
+				$("#nav_con ul li.nav_hover").hover(function() {
 					// $(this).addClass("nav_hover");
 					$(this).css("background-color", "#ee8296");
 
 				}, function() {
 					$(this).css("background-color", "#fff");
 				});
+				
+				
+				
+				//$(".sel_page").css({'background-color':'#ee8296','color':'#fff'});
+				
 			});
 
         </script>
+        
+        
 
     </head>
 
@@ -56,13 +63,13 @@
                     <li class="nav_hover">
                         <span href="#" class="nav_con_mainli"><span class="nav_con_li_eng">About</span> <span class="nav_con_li_chn">精灵的故事</span></span>
                     </li>
-                    <li>
+                    <li class="nav_hover">
                         <span href="#" class="nav_con_mainli"><span class="nav_con_li_eng">Gallery</span> <span class="nav_con_li_chn">精灵的作品</span></span>
                     </li>
-                    <li>
+                    <li class="nav_hover">
                         <span href="#" class="nav_con_mainli"><span class="nav_con_li_eng">Blog</span> <span class="nav_con_li_chn">精灵的博客</span></span>
                     </li>
-                    <li style="margin-right: 0px;padding-right: 5px">
+                    <li class="sel_page" style="margin-right: 0px;padding-right: 5px">
                         <span href="#" class="nav_con_mainli"><span class="nav_con_li_eng">Link</span> <span class="nav_con_li_chn">精灵的链接</span></span>
                     </li>
                 </ul>

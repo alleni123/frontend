@@ -125,29 +125,6 @@ a.index_affairs_link:link, a.index_affairs_link:visited {
     border: 1px solid #d1e28b;
 }
 
-/*bottom*/
-#bottom {
-    height: 88px;
-    /* background: url(img/bottom_bg.jpg);*/
-    width: 100%;
-    float: left;
-    border-top: 2px solid green;
-}
-
-#bottom_con div {
-    float: left;
-    position: relative;
-    top: 20px;
-}
-
-#bottom_con #rd_team {
-    left: 220px;
-}
-#bottom_con #copyright {
-    left: 310px;
-}
-#bottom_con #tech_support {
-    left: 400px;
-}
+ 
 
 </style>

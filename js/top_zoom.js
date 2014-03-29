@@ -20,33 +20,42 @@
 		}, opts || {});
 
 		var selector = $(this).selector;
-		console.log($(this));
+		//	console.log($(this));
 
 		$(document).on("click", setting.img_page, page);
 
 		$(setting.imgSelector).on("click", initZoom);
 		function initZoom(e) {
 
-			//根据图片宽度和浏览器显示宽度来计算一下图片到左边的距离left.
+			console.log(1);
+			calculateWH($(this));
+			console.log(calculateWH($(this)));
+			var zoom_img_wh = calculateWH($(this));
+
+			/**
+			 *开始窗口适应浏览器代码
+			 */
 			var w_width = $(window).width();
-			//1732
-			var img_w = $(this).attr("w");
-			//765
-			var img_left = w_width / 2 - img_w / 2;
-			//alert(img_left);
+			var w_height = $(window).height();
+
+			//根据图片宽度和浏览器显示宽度来计算一下图片到左边的距离left.
+			//var img_left = w_width / 2 - zoom_img_wh.width / 2;
+			var img_left = calculateLeft(w_width, zoom_img_wh.width);
 			setting.zoom_left = img_left;
 
-			 
 			//var $imgs = $(".click_img");
-			var $imgs=$(setting.imgSelector);
+			var $imgs = $(setting.imgSelector);
 
+			/**
+			 *给setting赋值 主要是前后图片的信息
+			 */
 			setting.$imgs = $imgs;
 			setting.img_num = $imgs.length;
-
-
 			setting.imgSrc = $(this).attr("src");
-			setting.nextImgSrc = $(this).next().attr("src");
-			setting.prevImgSrc = $(this).prev().attr("src");
+			var $nextImg = $imgs[$imgs.index($(this)) + 1];
+			setting.nextImgSrc = $nextImg == null ? null : $nextImg.getAttribute("src");
+			var $prevImg = $imgs[$imgs.index($(this)) - 1];
+			setting.prevImgSrc = $prevImg == null ? null : $prevImg.getAttribute("src");
 			setting.index_current = setting.$imgs.index($(this));
 			setting.index_next = setting.index_current + 1;
 			setting.index_prev = setting.index_current - 1;
@@ -77,14 +86,12 @@
 			//setting.prevImgSrc=$imgs[setting.index_prev].src;
 			//console.log(111);
 
-			 
-
 			//加入图片层
 			$("#appendParent").addImgzoom({
 				imgSrc : $(this).attr("src"),
 				zoomParent : selector,
-				imgWidth : $(this).attr("w"),
-				imgHeight : $(this).attr("h"),
+				imgWidth : zoom_img_wh.width,
+				imgHeight : zoom_img_wh.height,
 				nextImgSrc : $(this).next().attr("src"),
 				prevImgSrc : $(this).prev().attr("src"),
 				left : img_left
@@ -126,13 +133,14 @@
 				if (setting.$imgs[setting.index_prev] != null && setting.first_img == true) {
 					setting.first_img = false;
 				}
-			 
+
 				//http://www.javascriptkit.com/dhtmltutors/domattribute.shtml  -> dom getAttribute
 				//console.log(setting.$imgs[setting.index_current].getAttribute("w"));
 				//console.log(setting.zoom_left);
-				var img_w = (setting.$imgs[setting.index_current].getAttribute("w"));
-				 
-				$("#imgzoom").css("left", ($(window).width() / 2 - img_w / 2) + "px");
+
+				var zoom_left = calculateLeft($(window).width(), $(setting.$imgs[setting.index_current]));
+
+				$("#imgzoom").css("left", zoom_left + "px");
 
 			}
 
@@ -157,9 +165,9 @@
 				if (setting.$imgs[setting.index_next] != null && setting.last_img == true) {
 					setting.last_img = false;
 				}
-				var img_w = (setting.$imgs[setting.index_current].getAttribute("w"));
-				 
-				$("#imgzoom").css("left", ($(window).width() / 2 - img_w / 2) + "px");
+				var zoom_left = calculateLeft($(window).width(), $(setting.$imgs[setting.index_current]));
+
+				$("#imgzoom").css("left", zoom_left + "px");
 			}
 
 		};
@@ -214,12 +222,13 @@
 		}, opts || {});
 		//alert("src= "+setting.imgSrc);
 		//alert("imgleft= "+setting.left);
+
 		var imgzoom = document.createElement("div");
 		imgzoom.id = "imgzoom";
 		imgzoom.style.position = "fixed";
 		imgzoom.style.zIndex = 501;
 		imgzoom.style.cursor = "move";
-		imgzoom.style.top = "100px";
+		//imgzoom.style.top = "100px";
 		//imgzoom.style.left = "500px";
 		imgzoom.style.left = setting.left + "px";
 		imgzoom.style.display = "none";
@@ -287,7 +296,11 @@
 		//img.src = "roll-02.jpg";
 		img.src = setting.imgSrc;
 		//img.style.width = "480px";
-		img.style.width = setting.imgWidth;
+		if (setting.imgWidth < setting.imgHeight) {
+			img.style.width = setting.imgWidth + "px";
+		} else {
+			img.style.height = setting.imgHeight + "px";
+		}
 		img.className = "imgzoom_content";
 		imgDiv.appendChild(img);
 
@@ -316,5 +329,63 @@
 		$(this).append(coverObj);
 
 	};
+
+	/**
+	 *通过传入图片节点， 计算要适应屏幕的高度和宽度
+	 */
+	function calculateWH($img) {
+		console.log(1);
+		console.log($img);
+		var w_width = $(window).width();
+		var w_height = $(window).height();
+		var img_h = $img.attr("h");
+		var img_w = $img.attr("w");
+		//1.当图片高度大于宽度时，则以高度适应屏幕
+		if (img_w < img_h) {
+			//1.1当图片高度大于屏幕高度时， 就要缩放图片
+			if (img_h > w_height) {
+				var old_imgh = img_h;
+				img_h = w_height - 20;
+				img_w = img_w * (img_h / old_imgh);
+				img_w= Math.round((img_w*100)/100);
+			}
+
+		}
+		//2.当图片宽度大于高度时， 就以宽度来适应屏幕
+		else {
+			if (img_w > w_width) {
+				var old_imgw = img_w;
+				img_w = w_width;
+				img_h = imgh * (img_w / old_imgw);
+				img_h=Math.round((img_h*100)/100);
+			}
+		}
+
+		var imgWH = new Object();
+		imgWH.width = parseFloat(img_w);
+		imgWH.height = parseFloat(img_h);
+
+		//根据图片宽度和浏览器显示宽度来计算一下图片到左边的距离left.
+		//var img_left = w_width / 2 - img_w / 2;
+		return imgWH;
+	}
+
+	/**
+	 *计算到屏幕左边的距离
+	 */
+	function calculateLeft(w_width, $img) {
+		if ( typeof($img) == "number") {
+			return w_width / 2 - $img / 2;
+		} else {
+			var imgWH = calculateWH($img);
+			return w_width / 2 - imgWH.width / 2;
+		}
+	}
+
+	// function calculateLeft(w_width,zoom_img_width){
+	// alert(typeof zoom_img_width);
+	// return w_width/2-zoom_img_width/2;
+	// }
+
 })(jQuery);
 
