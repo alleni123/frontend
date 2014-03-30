@@ -1,5 +1,9 @@
 (function($) {
 
+
+/**
+ *依赖jquery_draggable.js和dialog.js 
+ */
 	$.fn.imgzoom = function(opts) {
 
 		var setting = $.extend({
@@ -26,7 +30,9 @@
 
 		$(setting.imgSelector).on("click", initZoom);
 		function initZoom(e) {
-
+			
+		
+			
 			console.log(1);
 			calculateWH($(this));
 			console.log(calculateWH($(this)));
@@ -105,6 +111,10 @@
 				//alert("show");
 				$("#appendParent").addCover();
 			}
+			
+			
+				//$("#dialog").dialog({btnSelector:".img_prev",dialog_text:"已经到了最后一页!",confirmBtnClz:"imgzoom_content"});
+			
 
 			$("#imgzoom").show();
 			return false;
@@ -116,7 +126,7 @@
 			if (($(e.target).hasClass("img_next"))) {
 				//$("#imgzoom_zoom").attr("src", setting.nextImgSrc);
 				if (setting.last_img) {
-					alert("已经是最后一张图片");
+					$(this).showDialog({dialog_text:"已经到了最后一页!",confirmBtnClz:"imgzoom_content"});			;
 					return;
 				}
 
@@ -147,7 +157,7 @@
 			//点击上一页
 			if (($(e.target).hasClass("img_prev"))) {
 				if (setting.first_img) {
-					alert("前面没有了");
+					$(this).showDialog({dialog_text:"前面没有了!",confirmBtnClz:"imgzoom_content"});			;
 					return;
 				}
 
@@ -232,17 +242,35 @@
 		//imgzoom.style.left = "500px";
 		imgzoom.style.left = setting.left + "px";
 		imgzoom.style.display = "none";
+		
+		
 
 		//这里是添加imgzoom div的地方。
 		//alert(setting.zoomParent);
 		//$("#appendParent").append(imgzoom);
 		$(setting.zoomParent).append(imgzoom);
+		
+		
+		/**
+		 *添加dialog节点 
+		 */
+		var dialog=document.createElement("div");
+		dialog.id="dialog";
+		dialog.className="dialog imgzoom_content";
+		dialog.style.display="none";
+		dialog.style.Zindex="1000";
+		imgzoom.appendChild(dialog);
+		
 
 		var zoomlayer = document.createElement("div");
 		zoomlayer.id = "imgzoom_zoomlayer";
 		zoomlayer.className = "zoominner imgzoom_content";
 		//zoomlayer.style.height = "760px";
 		imgzoom.appendChild(zoomlayer);
+		
+		
+		
+		
 
 		var p = document.createElement("p");
 		p.className = "imgzoom_content";
