@@ -20,7 +20,7 @@
 			first_img : false, //测试代码， 用于分辨是否是第一个图片和最后一个图片
 			last_img : false,
 			img_num : "", //图片总数
-			zoom_left : "",
+			zoom_left : ""
 		}, opts || {});
 
 		var selector = $(this).selector;
@@ -228,7 +228,7 @@
 			imgHeight : "",
 			zoomParent : "#appendParent",
 			left : "",
-			top : "",
+			top : ""
 		}, opts || {});
 		//alert("src= "+setting.imgSrc);
 		//alert("imgleft= "+setting.left);
