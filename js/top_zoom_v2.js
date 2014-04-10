@@ -210,11 +210,17 @@
 		bindEvent : function() {
 			console.log("bindEvent");
 			$(document).on("click", _setting.img_page, view.page);
+			
+			 
+			
 			$(_setting.imgSelector).on("click", view.initZoom);
-
+			 
 			$("body").on("click", view.removeJLzoom);
-
+				
 			$(document).on("click", ".imgclose", view.removeJLzoom);
+			
+			
+			
 			//$("body").on("click", view.removeZoom).on("click", view.removeCover);
 
 			//console.log($(setting.imgSelector).selector);
@@ -308,7 +314,10 @@
 			imgzoom.style.left = _setting.left + "px";
 			imgzoom.style.display = "block";
 			$("#" + _setting.parentId).append(imgzoom);
-
+			
+			//放这里似乎不太好。 
+			$("#imgzoom").drags();
+			
 			/**
 			 *添加dialog节点
 			 */
@@ -589,7 +598,7 @@
 			}
 
 			//看看先
-
+		
 			event.bindEvent();
 			//data.initData(setting);
 
