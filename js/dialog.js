@@ -108,6 +108,8 @@
 			btn.setAttribute("value", "确定");
 
 			btn.style.marginTop = "15px";
+			btn.style.width="50px"
+			btn.style.height="30px";
 			btn.className = _const.className.DIALOG_BTN + " " + setting.confirmBtnClz;
 			dialog.appendChild(btn);
 

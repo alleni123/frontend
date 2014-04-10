@@ -1,48 +1,46 @@
 (function($) {
 
+	/**
+	 *依赖jquery_draggable.js和dialog.js
+	 */
 
-/**
- *依赖jquery_draggable.js和dialog.js 
- */
-	$.fn.imgzoom = function(opts) {
+	var _setting = {
+		c_height : null, //客户端浏览器可视高度
+		c_width : null,//客户端浏览器可视宽度
+		imgSelector : ".click_img",
+		imgSrc : "", //显示在前面的图片src
+		next : ".img_next",
+		img_page : ".img_page", //上一页和下一页点击区域的class
+		nextImgSrc : "", //下一页图片src
+		prevImgSrc : "", //上一页图片src
+		$imgs : null, //$(".click_img")
+		index_current : "", // imgs中的index值  setting.imgs.index($(this))
+		index_next : "",
+		index_prev : "",
+		first_img : false, //测试代码， 用于分辨是否是第一个图片和最后一个图片
+		last_img : false,
+		img_num : "",//图片总数
+	};
 
-		var setting = $.extend({
-			imgSelector : ".click_img",
-			imgSrc : "", //显示在前面的图片src
-			next : ".img_next",
-			img_page : ".img_page", //上一页和下一页点击区域的class
-			nextImgSrc : "", //下一页图片src
-			prevImgSrc : "", //上一页图片src
-			$imgs : null, //$(".click_img")
-			index_current : "", // imgs中的index值  setting.imgs.index($(this))
-			index_next : "",
-			index_prev : "",
-			first_img : false, //测试代码， 用于分辨是否是第一个图片和最后一个图片
-			last_img : false,
-			img_num : "", //图片总数
-			zoom_left : ""
-		}, opts || {});
-
-		var selector = $(this).selector;
-		//	console.log($(this));
-
-		$(document).on("click", setting.img_page, page);
-
-		$(setting.imgSelector).on("click", initZoom);
-		function initZoom(e) {
-			
+	$.fn.imgzoom ={
 		
-			
-			console.log(1);
-			calculateWH($(this));
-			console.log(calculateWH($(this)));
+		init:function(obj,Jsetting){
+			var setting=_setting;
+			$.extend(true,setting,Jsetting);
 			var zoom_img_wh = calculateWH($(this));
-
-			/**
+			$(document).on("click", setting.img_page, page);
+			$(setting.imgSelector).on("click", initZoom);
+					
+		var jZoomTools={
+			
+			
+			setting:setting,
+			
+			
+			initZoom:function(e){
+						/**
 			 *开始窗口适应浏览器代码
 			 */
-			var w_width = $(window).width();
-			var w_height = $(window).height();
 
 			//根据图片宽度和浏览器显示宽度来计算一下图片到左边的距离left.
 			//var img_left = w_width / 2 - zoom_img_wh.width / 2;
@@ -105,28 +103,30 @@
 			$("#imgzoom").drags();
 
 			if ($("#_cover").css("display") == "none") {
-				//alert("== ");
 				$("#_cover").show();
 			} else {
-				//alert("show");
 				$("#appendParent").addCover();
 			}
-			
-			
-				//$("#dialog").dialog({btnSelector:".img_prev",dialog_text:"已经到了最后一页!",confirmBtnClz:"imgzoom_content"});
-			
+
+			//$("#dialog").dialog({btnSelector:".img_prev",dialog_text:"已经到了最后一页!",confirmBtnClz:"imgzoom_content"});
 
 			$("#imgzoom").show();
 			return false;
-		};
-
-		function page(e) {
-
+			},
+			
+			
+			
+			page:function(e){
+			
 			//点击下一页
 			if (($(e.target).hasClass("img_next"))) {
 				//$("#imgzoom_zoom").attr("src", setting.nextImgSrc);
 				if (setting.last_img) {
-					$(this).showDialog({dialog_text:"已经到了最后一页!",confirmBtnClz:"imgzoom_content"});			;
+					$(this).showDialog({
+						dialog_text : "已经到了最后一页!",
+						confirmBtnClz : "imgzoom_content"
+					});
+					;
 					return;
 				}
 
@@ -157,7 +157,11 @@
 			//点击上一页
 			if (($(e.target).hasClass("img_prev"))) {
 				if (setting.first_img) {
-					$(this).showDialog({dialog_text:"前面没有了!",confirmBtnClz:"imgzoom_content"});			;
+					$(this).showDialog({
+						dialog_text : "前面没有了!",
+						confirmBtnClz : "imgzoom_content"
+					});
+					;
 					return;
 				}
 
@@ -179,12 +183,10 @@
 
 				$("#imgzoom").css("left", zoom_left + "px");
 			}
-
-		};
-
-		//如果点击了图片区域以外， 就会去掉图片显示。
-		$("body").click(function(e) {
-			//如果是分页操作，不执行其它代码。
+		},
+		
+		removeZoom:function(e){
+				//如果是分页操作，不执行其它代码。
 			if ($(e.target).hasClass("img_page")) {
 				e.preventDefault();
 				return;
@@ -214,10 +216,20 @@
 				$("#imgzoom").remove();
 				e.preventDefault();
 			}
-			//e.preventDefault();
-		});
-
-	};
+		},
+		addImgzoom:function(JLsetting){
+			var setting=$.extend(
+		}
+		
+	};	//	var jZoomTools结束
+					
+		
+		
+		
+	 //如果点击了图片区域以外， 就会去掉图片显示。
+		$("body").click(function(e) {
+		 	removeZoom();
+		 };
 
 	$.fn.addImgzoom = function(opts) {
 
@@ -242,35 +254,27 @@
 		//imgzoom.style.left = "500px";
 		imgzoom.style.left = setting.left + "px";
 		imgzoom.style.display = "none";
-		
-		
 
 		//这里是添加imgzoom div的地方。
 		//alert(setting.zoomParent);
 		//$("#appendParent").append(imgzoom);
 		$(setting.zoomParent).append(imgzoom);
-		
-		
+
 		/**
-		 *添加dialog节点 
+		 *添加dialog节点
 		 */
-		var dialog=document.createElement("div");
-		dialog.id="dialog";
-		dialog.className="dialog imgzoom_content";
-		dialog.style.display="none";
-		dialog.style.Zindex="1000";
+		var dialog = document.createElement("div");
+		dialog.id = "dialog";
+		dialog.className = "dialog imgzoom_content";
+		dialog.style.display = "none";
+		dialog.style.Zindex = "1000";
 		imgzoom.appendChild(dialog);
-		
 
 		var zoomlayer = document.createElement("div");
 		zoomlayer.id = "imgzoom_zoomlayer";
 		zoomlayer.className = "zoominner imgzoom_content";
 		//zoomlayer.style.height = "760px";
 		imgzoom.appendChild(zoomlayer);
-		
-		
-		
-		
 
 		var p = document.createElement("p");
 		p.className = "imgzoom_content";
@@ -362,8 +366,7 @@
 	 *通过传入图片节点， 计算要适应屏幕的高度和宽度
 	 */
 	function calculateWH($img) {
-		console.log(1);
-		console.log($img);
+	 
 		var w_width = $(window).width();
 		var w_height = $(window).height();
 		var img_h = $img.attr("h");
@@ -375,7 +378,7 @@
 				var old_imgh = img_h;
 				img_h = w_height - 20;
 				img_w = img_w * (img_h / old_imgh);
-				img_w= Math.round((img_w*100)/100);
+				img_w = Math.round((img_w * 100) / 100);
 			}
 
 		}
@@ -385,7 +388,7 @@
 				var old_imgw = img_w;
 				img_w = w_width;
 				img_h = imgh * (img_w / old_imgw);
-				img_h=Math.round((img_h*100)/100);
+				img_h = Math.round((img_h * 100) / 100);
 			}
 		}
 
@@ -402,7 +405,7 @@
 	 *计算到屏幕左边的距离
 	 */
 	function calculateLeft(w_width, $img) {
-		if ( typeof($img) == "number") {
+		if ( typeof ($img) == "number") {
 			return w_width / 2 - $img / 2;
 		} else {
 			var imgWH = calculateWH($img);

@@ -14,8 +14,27 @@
 }
 
 .zoominner p span .imgzoom_btn {
-    margin-left: 9px;
+  padding: 6px 6px;
+margin-left: 1px;
 }
+
+.imgzoom_btn:visited,.imgzoom_btn:link{
+    color:black;
+}
+
+.imgzoom_btn:hover{
+    color:gray;
+}
+
+.imgzoom_btn:visited:hover{
+    color:gray;
+}
+
+ 
+
+ 
+
+
 
 .img_prev, .img_next{
     width:80px;

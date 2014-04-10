@@ -3,15 +3,10 @@
     <head>
         <meta charset="utf-8">
 
-        <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
-        Remove this if you use the .htaccess -->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        
 
         <title>blog_content</title>
-        <meta name="description" content="">
-        <meta name="author" content="Administrator">
-
-        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+       
 
         <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
         <link rel="shortcut icon" href="/favicon.ico">
@@ -68,11 +63,45 @@
                 background: url(css/img/line_dot.jpg);
                 height: 2px;
             }
+            
+           
+            
+            .blog_comments .linedot{
+                margin-top:5px;
+                width:50%;
+                   background: url(css/img/line_dot.jpg);
+                height: 2px;
+            }
+            
+            
+             .blog_comments_wrapper{
+                margin-left:20px;
+            }
+            
+            
+            .comment_content{
+                margin-top:10px;
+            }
+            
+            .comment_date{
+                margin-top:10px;
+            }
+            
+            .blog_comments{
+               margin-top:10px;
+            }
+            
+            .blog_comments .comment_owner span{
+                font-weight:bold;
+                 font-size:14px;
+                color:#000;
+            }
 
-            .blog_comment {
+            .blog_addcomment {
                 clear: both;
                 margin: 0 auto;
                 width: 800px;
+                margin-top:20px;
             }
             
             .comment_header{
@@ -101,6 +130,40 @@
             }
 
         </style>
+        
+        <script type="text/javascript">
+          
+            
+            window.onload=function(){
+               function showNodes(){
+                  console.log(document.getElementsByClassName("edui_container")[0].childNodes)  ;
+              }
+              
+              var edui=document.getElementsByClassName("edui_container")[0];
+              edui.onkeyup=function(e){
+                if(e.keyCode==8){
+                    
+                    console.log(edui.childNodes.length);
+                    if(edui.childNodes.length==0){
+                            
+                           var p=document.createElement("p");
+                           edui.appendChild(p);
+                           var br=document.createElement("br");
+                           p.appendChild(br);
+                           console.log(edui.childNodes);
+                           edui.childNodes[0].focus();
+                           
+                    }
+                }
+              };
+              
+              //setInterval(showNodes,5000); 
+              
+              
+             
+            };
+            
+        </script>
 
     </head>
 
@@ -131,11 +194,50 @@
 
                         </div>
                         <div class="linedot">
-
+                            
                         </div>
                     </div>
+                    
+                    <div class="blog_comments_wrapper">
+                        <div class="blog_comments">
+                        
+                        <div class="blog_comment_con">
+                            <div class="comment_owner"><span>弱智</span></div>
+                            <div class="comment_content">
+                                画的好好
+                            </div>
+                            <div class="comment_date">
+                                2014-3-30 19:20
+                            </div>
+                        </div>
+                         <div class="linedot">
+                            
+                        </div>
+                        
+                        </div>
+                        
+                        
+                         <div class="blog_comments">
+                        
+                        <div class="blog_comment_con">
+                            <div class="comment_owner"><span>弱智</span></div>
+                            <div class="comment_content">
+                                画的好好
+                            </div>
+                            <div class="comment_date">
+                                2014-3-30 19:20
+                            </div>
+                        </div>
+                         <div class="linedot">
+                            
+                        </div>
+                        
+                        </div>
+                        
+                    </div>
+                    
 
-                    <div class="blog_comment">
+                    <div class="blog_addcomment">
                         <div class="comment_header clearfix">
                             <div class="comment_header_text">
                                 发表评论
@@ -143,8 +245,8 @@
                         </div>
                         <div class="comment_body editor_wrapper">
                             <div class="edui_body">
-                                <div class="edui_container" style="height:220px;width:580px" contenteditable="true">
-                                    <p>
+                                <div class="edui_container" style="height:220px;width:580px" >
+                                    <p contenteditable="true" style="width: 100%;height:100%">
                                         <br>
                                     </p>
                                 </div>

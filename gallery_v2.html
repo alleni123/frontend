@@ -11,7 +11,7 @@
          <link  rel="stylesheet" type="text/css" href="js/top_zoom.css"/>
           <script type="text/javascript" src="js/jquery-1.9.0.js"></script>
        <script type="text/javascript" src="js/jquery_draggable.js"></script>
-       <script type="text/javascript" src="js/top_zoom.js"></script>
+       <script type="text/javascript" src="js/top_zoom_v2.js"></script>
         <script type="text/javascript" src="js/dialog.js"></script>
       
         
@@ -85,16 +85,11 @@
             $(function(){
               //  $(".gallery_img_img").drags();
             //  $("#gallery_img_img img").
-            console.log(document);
-            console.log(document.body);
-        console.log("document.body.clientHeight= "+document.body.clientHeight);
-        console.log("document.documentElement.clientHeight= "+document.documentElement.clientHeight);
-       // console.log(document.documentElement.clientHeight);
-               // $("#appendParent").imgzoom({
-               //     imgSelector : ".click_img"
-               // });
-               
-                    $("#appendParent").imgzoom.init();
+           
+       
+                       
+                var height=Math.max($(document).height(), $(window).height());
+                    $("#appendParent").JLzoom.init($("#appendParent"));
               
                
             });
@@ -106,7 +101,7 @@
     <body>
         
          
-        
+        <input type="button" value="remove">
         <div id="appendParent"></div>
         
         <div id="content">
@@ -133,7 +128,7 @@
                         <li>
                             <div class="gallery_img_img">
                                <img alt=""
-                            src="css/img/roll-01.jpg" width="160" height="160" w="766" h="786" class="click_img" />
+                            src="css/img/roll-01.jpg" zoomsrc="css/img/roll-01.jpg" fullsrc="css/img/roll-01-full.jpg" width="160" height="160" w="766" h="786" class="click_img" />
                             </div>
                              <div class="gallery_img_title">
                             <span><a href="id" title="title">title</a> </span>
@@ -147,7 +142,7 @@
                           <li>
                             <div class="gallery_img_img">
                                <img alt=""
-                            src="css/img/roll-02.jpg" width="160" height="160"  class="click_img" w="766" h="786" />
+                            src="css/img/roll-02.jpg" zoomsrc="css/img/roll-02.jpg" fullsrc="css/img/roll-02-full.jpg" width="160" height="160"  class="click_img" w="766" h="786" />
                             </div>
                              <div class="gallery_img_title">
                             <span><a href="*id" title="title">title</a> </span>
@@ -162,7 +157,7 @@
                           <li>
                             <div class="gallery_img_img">
                                <img alt=""
-                            src="css/img/roll-03.jpg" width="160" height="160" class="click_img" w="766" h="786" />
+                            src="css/img/roll-03.jpg" zoomsrc="css/img/roll-03.jpg" fullsrc="css/img/roll-03-full.jpg" width="160" height="160" class="click_img" w="766" h="786" />
                             </div>
                              <div class="gallery_img_title">
                             <span><a href="*id" title="title">title</a> </span>
@@ -175,7 +170,7 @@
                           <li>
                             <div class="gallery_img_img">
                                <img alt=""
-                            src="css/img/roll-04.jpg" width="160" height="160" class="click_img" w="766" h="786"/>
+                            src="css/img/roll-04.jpg" width="160" height="160" class="click_img" w="700" h="150"/>
                             </div>
                              <div class="gallery_img_title">
                             <span><a href="*id" title="title">title</a> </span>
