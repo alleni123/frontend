@@ -155,7 +155,8 @@
 			console.log(target);
 			// console.log(setting);
 			// return setting;
-
+			
+			
 			_setting.c_height = document.body.clientHeight;
 			_setting.c_width = document.body.clientWidth;
 
@@ -166,7 +167,7 @@
 
 			_setting.left = data.calculateLeft(_setting.c_width, zoom_img_wh.width);
 			_setting.top = data.calculateTop(_setting.c_height, zoom_img_wh.height);
-
+			
 			/**
 			 * 给_setting赋值， 主要是前后图片的信息
 			 */
@@ -219,7 +220,8 @@
 				
 			$(document).on("click", ".imgclose", view.removeJLzoom);
 			
-			
+			$(document).on("mouseover",".img_page",view.addOpacity);
+			$(document).on("mouseout",".img_page",view.removeOpacity);
 			
 			//$("body").on("click", view.removeZoom).on("click", view.removeCover);
 
@@ -230,7 +232,8 @@
 		},
 		bindRemoveEvent : function(setting) {
 			$("body").on("click", view.removeZoom);
-		}
+		} 
+		 
 	}, 
 	
 	tools = {
@@ -334,15 +337,24 @@
 			//zoomlayer.style.height = "760px";
 			imgzoom.appendChild(zoomlayer);
 
-			var p = document.createElement("p");
-			p.className = "imgzoom_content";
-			zoomlayer.appendChild(p);
 
+
+			//这个p应该是固定的高度
+			var p = document.createElement("p");
+			p.className = "imgzoom_content imgzoom_btn";
+			
+			zoomlayer.appendChild(p);
+			
+			
+			
 			var span = document.createElement("span");
+			span.style.float="right";
 			span.className = "y";
 			p.appendChild(span);
 
 			var a_ori_img = document.createElement("a");
+		//	a_ori_img.style.float="left";
+		//	a_ori_img.style.position="absolute";
 			a_ori_img.id = "imgzoom_imglink";
 			a_ori_img.className = "imglink imgzoom_btn imgzoom_content";
 			a_ori_img.target = "_blank";
@@ -353,6 +365,8 @@
 			a_ori_img.appendChild(txt);
 
 			var a_close = document.createElement("a");
+		//	a_close.style.float="left";
+		//	a_close.style.position="absolute";
 			a_close.className = "imgclose imgzoom_btn imgzoom_content";
 			a_close.title = "关闭";
 			a_close.href = "#";
@@ -367,16 +381,35 @@
 			zoomlayer.appendChild(img_pager);
 			var img_prev = document.createElement("div");
 			img_prev.className = "img_prev img_page";
+			img_prev.id="img_prev";
 			//alert("prev="+_setting.imgHeight);
 			img_prev.style.height = _setting.calculatedWH.height + "px";
+			//加入左翻页的按钮
+			var img_prev_pointer=document.createElement("div");
+			img_prev_pointer.id="leftpointer";
+			img_prev_pointer.className="imgzoom_content img_prev img_pointer";
+			img_prev_pointer.style.top= _setting.calculatedWH.height/2.4 + "px";
+			//img_prev_pointer.style.left="-8px";
+			img_prev.appendChild(img_prev_pointer);
+			
+			
 
 			var img_next = document.createElement("div");
 			img_next.className = "img_next img_page";
+			img_next.id="img_next";
 			img_next.style.height = _setting.calculatedWH.height + "px";
-
+			//加入右翻页的按钮
+			var img_next_pointer=document.createElement("div");
+			img_next_pointer.id="rightpointer";
+			img_next_pointer.className="imgzoom_content img_next img_pointer";
+			img_next_pointer.style.top=_setting.calculatedWH.height/2.4+"px";
+			img_next_pointer.style.left="35px";
+			img_next.appendChild(img_next_pointer);
+			
+			
 			zoomlayer.appendChild(img_prev);
 			zoomlayer.appendChild(img_next);
-
+			
 			var imgDiv = document.createElement("div");
 			imgDiv.id = "imgzoom_img";
 			imgDiv.className = "hm imgzoom_content";
@@ -393,8 +426,10 @@
 
 			if (_setting.calculatedWH.width < _setting.calculatedWH.height) {
 				img.style.width = _setting.calculatedWH.width + "px";
+				img.style.height="auto";
 			} else {
 				img.style.height = _setting.calculatedWH.height + "px";
+				img.style.width="auto";
 			}
 
 			img.className = "imgzoom_content";
@@ -520,8 +555,12 @@
 			//imgzoom_zoom是图片
 			$("#imgzoom_zoom").css("width", zoom_img_wh.width);
 			$("#imgzoom_zoom").css("height", zoom_img_wh.height);
-			$(".img_prev").css("height", zoom_img_wh.height);
-			$(".img_next").css("height", zoom_img_wh.height);
+			
+			//$("#img_prev").css("height", zoom_img_wh.height);
+			//$("#img_next").css("height", zoom_img_wh.height);
+			$(".img_page").css("height",zoom_img_wh.height);
+			
+			$(".img_pointer").css("top",zoom_img_wh.height/2.4);
 		},
 
 		/**
@@ -559,6 +598,14 @@
 
 			$("#_cover").remove();
 
+		},
+		
+		addOpacity:function(e){
+			$(".img_page").css("opacity","0.5");
+		},
+		
+		removeOpacity:function(e){
+			$(".img_page").css("opacity","0");
 		},
 
 		destroy : function() {

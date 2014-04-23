@@ -1,0 +1,32 @@
+#leftpointer {
+    width: 45px;
+    position: absolute;
+    height: 45px;
+  /*  top: 180px;
+    left: -5px;*/
+    background-image: url(../css/img/bg_img.jpg);
+    background-repeat: no-repeat;
+    background-position: 0px -224px;
+}
+
+
+#rightpointer {
+    width: 45px;
+    position: absolute;
+    height: 45px;
+  /*  top: 180px;
+    left: -5px;*/
+    background-image: url(../css/img/bg_img.jpg);
+    background-repeat: no-repeat;
+    background-position: -55px -224px;
+}
+
+
+.imgzoom_btn{
+    height:30px;
+}
+
+
+.img_page{
+    opacity:0;
+}
